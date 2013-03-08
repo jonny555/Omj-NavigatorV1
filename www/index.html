@@ -20,7 +20,7 @@
     <head>
        <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<script type="text/javascript"> function changeText2(){ var name = document.getElementById('name').value; var lnk = document.getElementById('Ink'); lnk.href = "http://" + name; lnk.innerHTML = lnk.href; } </script>
+<script type="text/javascript"> function changeText2(){ var name = document.getElementById('userinput').value; var lnk = document.getElementById('Ink'); lnk.href = "http://" + name; lnk.innerHTML = lnk.href; } </script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery.mobile-1.2.0.js"></script>
 <link rel="stylesheet" href="css/index.css"/>
@@ -62,7 +62,7 @@ $(document).on('pageshow','#newpage', function() {
   <div class="content-primary">
 			<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="d" data-icon="false" class="homelist">
 				<li data-role="list-divider">Oversight jukebox</li>
-				<li data-icon="false"><a href="" id='name'>Enter ip<input type='text' id='name' value='pchip:8883/oversight/oversight.cgi' /></a><input type='button' onclick='changeText2()' value='Ok'/>
+				<li data-icon="false"><a href="" id='Ink'>Enter ip<input type='text' id='userinput' value='pchip:8883/oversight/oversight.cgi' /></a><input type='button' onclick='changeText2()' value='Ok'/>
     </li>
 				<li data-role="list-divider">Webservices</li>
 				<li data-icon="false"><a href="https://www.youtube.com">Trailers</a></li>
