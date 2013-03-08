@@ -20,7 +20,7 @@
     <head>
        <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<script type="text/javascript"> function changeText2(){ var userInput = document.getElementById('userInput').value; var lnk = document.getElementById('lnk'); lnk.href = "http://" + userInput; lnk.innerHTML = lnk.href; } </script>
+<script type="text/javascript"> function changeText2(){ var name = document.getElementById('name').value; var lnk = document.getElementById('Ink'); lnk.href = "http://" + name; lnk.innerHTML = lnk.href; } </script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery.mobile-1.2.0.js"></script>
 <link rel="stylesheet" href="css/index.css"/>
@@ -37,24 +37,19 @@ cb.showWebPage('http://pchip:8883/oversight/oversight.cgi');
 </script>
 <script> $('a[href^="http"]').live('tap', function(e){ e.preventDefault(); var url = $(this).attr("href"); window.plugins.childBrowser.showWebPage(url, { showNavigationBar: true, showLocationBar: true, showAddressBar: true, showToolBar: true }); }); </script>
 <script>
-window.onload = function()
-{
-	var theInputs = document.getElementsByTagName('input');
-	for(var i = 0; i < theInputs.length; i++)
-	{
-		if(theInputs[i].type == 'text')
-		{
-			theInputs[i].onkeyup = function()
-			{
-				createCookie(this.name,this.value,9999);
-			}
-		}
-		if(readCookie(theInputs[i].name+'val') != null)
-		{
-			theInputs[i].value = readCookie(theInputs[i].name+'val');
-		}
-}
-}
+$(document).on("pageinit","#newpage",function(){
+    $('#saveButton').click(function() {
+        localStorage.setItem("name", $('#name').val());
+    });
+});
+
+
+$(document).on('pageshow','#newpage', function() {
+    var personName = localStorage.getItem("name");
+    if(personName.length>0){
+            $('#name').val(personName);
+    }
+});
 </script>
 </head>
 <body onload='onBodyLoad();'>
@@ -67,7 +62,7 @@ window.onload = function()
   <div class="content-primary">
 			<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="d" data-icon="false" class="homelist">
 				<li data-role="list-divider">Oversight jukebox</li>
-				<li data-icon="false"><a href="" id='lnk'>Enter ip<input type='text' id='userInput' value='pchip:8883/oversight/oversight.cgi' /></a><input type='button' onclick='changeText2()' value='Ok'/>
+				<li data-icon="false"><a href="" id='lnk'>Enter ip<input type='text' id='name' value='pchip:8883/oversight/oversight.cgi' /></a><input type='button' onclick='changeText2()' value='Ok'/>
     </li>
 				<li data-role="list-divider">Webservices</li>
 				<li data-icon="false"><a href="https://www.youtube.com">Trailers</a></li>
