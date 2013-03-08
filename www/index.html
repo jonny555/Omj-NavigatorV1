@@ -53,7 +53,7 @@ $(document).on('pageshow','#newpage', function() {
 </script>
 </head>
 <body onload='onBodyLoad();'>
-<div data-role="page" data-theme="a">
+<div data-role="page" id="newpage" data-theme="a">
 <div data-role="header" data-theme="d">
  <h1>Omj Navigator</h1>
 </div><!-- /header -->
@@ -62,7 +62,7 @@ $(document).on('pageshow','#newpage', function() {
   <div class="content-primary">
 			<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="d" data-icon="false" class="homelist">
 				<li data-role="list-divider">Oversight jukebox</li>
-				<li data-icon="false"> <label for="name">what is your name?</label>
+				<li data-icon="false"><label for="name">what is your name?</label>
         <input id="name" type="text" name="name" value="" />
         <a id="saveButton" href="" data-role="button">Save</a>
     </li>
