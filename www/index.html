@@ -39,15 +39,15 @@ cb.showWebPage('http://pchip:8883/oversight/oversight.cgi');
 <script>
 $(document).on("pageinit","#newpage",function(){
     $('#saveButton').click(function() {
-        localStorage.setItem("name", $('#name').val());
+        localStorage.setItem("lnk", $('userinput').val());
     });
 });
 
 
 $(document).on('pageshow','#newpage', function() {
-    var personName = localStorage.getItem("name");
+    var personName = localStorage.getItem("lnk");
     if(personName.length>0){
-            $('#name').val(personName);
+            $('userinput').val(personName);
     }
 });
 </script>
@@ -62,9 +62,8 @@ $(document).on('pageshow','#newpage', function() {
   <div class="content-primary">
 			<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="d" data-icon="false" class="homelist">
 				<li data-role="list-divider">Oversight jukebox</li>
-				<li data-icon="false"><label for="name"></label>
-       <input id="name" type="text" name="name" value="">
-        <a id="saveButton" href="" value="Open in New Window!" data-role="button">Save</a>
+				<li data-icon="false"><a href="" id='lnk'>Enter ip<input type='text' id='userInput' value='pchip:8883/oversight/oversight.cgi' /></a><input type='button' onclick='changeText2()' value='Ok'/>
+        <a id="saveButton" href="" data-role="button">Save</a>
     </li>
 				<li data-role="list-divider">Webservices</li>
 				<li data-icon="false"><a href="https://www.youtube.com">Trailers</a></li>
