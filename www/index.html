@@ -36,7 +36,21 @@ cb.showWebPage('http://pchip:8883/oversight/oversight.cgi');
 
 </script>
 <script> $('a[href^="http"]').live('tap', function(e){ e.preventDefault(); var url = $(this).attr("href"); window.plugins.childBrowser.showWebPage(url, { showNavigationBar: true, showLocationBar: true, showAddressBar: true, showToolBar: true }); }); </script>
+<script>
+$(document).on("pageinit","#newpage",function(){
+    $('#saveButton').click(function() {
+        localStorage.setItem("name", $('#name').val());
+    });
+});
 
+
+$(document).on('pageshow','#newpage', function() {
+    var personName = localStorage.getItem("name");
+    if(personName.length>0){
+            $('#name').val(personName);
+    }
+});
+</script>
 </head>
 <body onload='onBodyLoad();'>
 <div data-role="page" id="newpage" data-theme="a">
@@ -48,32 +62,9 @@ cb.showWebPage('http://pchip:8883/oversight/oversight.cgi');
   <div class="content-primary">
 			<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="d" data-icon="false" class="homelist">
 				<li data-role="list-divider">Oversight jukebox</li>
-				<li data-icon="false"><div id="linkcontainer">
-			<a href="http://www.google.com">Google</a><br/>			
-			<a href="http://www.getfirebug.com">Firebug</a><br/>
-		</div>
-		
-		<form style="margin-top: 10px;">
-			<fieldset>
-				<label>Url&nbsp;</label><input type="text" name="url" id="url" /><br/>
-				<label>Caption&nbsp;</label><input type="text" name="cap" id="cap" />
-			</fieldset>
-			<input type="button" name="insert" value="INSERT LINK" id="insert" /> 
-		</form>
-		<script type="text/javascript">
-			document.getElementById("insert").onclick = function(){
-				if(document.getElementById('url').value !== ""){
-					var a = document.createElement('a');
-					var br = document.createElement('br');
-					a.href = document.getElementById('url').value;
-					var c = document.getElementById('cap').value || new Date().getTime();
-					a.innerHTML = c;
-					var container = document.getElementById('linkcontainer');
-					container.appendChild(a);
-					container.appendChild(br);
-				}	
-			}			
-		</script> 
+				<li data-icon="false"> <label for="name">what is your name?</label>
+        <input id="name" type="text" name="name" value="" />
+        <a id="saveButton" href="" data-role="button">Save</a>
     </li>
 				<li data-role="list-divider">Webservices</li>
 				<li data-icon="false"><a href="https://www.youtube.com">Trailers</a></li>
